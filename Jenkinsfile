@@ -31,7 +31,7 @@ pipeline {
         stage('Sonar Scan'){
             steps {
                 withSonarQubeEnv(installationName: 'SonarQube-Server'){
-                    sh "mvn sonar:sonar -Dsonar.projectName=${MICROSERVICE_IMAGE_NAME}"
+                    sh "mvn verify -Dmaven.test.failure.ignore=true sonar:sonar -Dsonar.projectName=${MICROSERVICE_IMAGE_NAME}"
                 }
             }
         }
